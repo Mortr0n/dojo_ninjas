@@ -1,0 +1,69 @@
+* { /* Got this from https://perishablepress.com/a-killer-collection-of-global-css-reset-styles/ */
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-family: 'Patrick Hand', cursive;
+    font-style: inherit;
+    font-size: 104%;
+    border: 0 none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.info_box section h3 {
+    font-size: 35px;
+    font-weight: 900;
+}
+
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.info_box {
+    width: 380px;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 3px solid black;
+}
+
+.info_box .input_line label, .info_box input, select {
+    width: 150px;
+}
+
+.info_box input, select {
+    border: 2px solid black;
+}
+
+.input_line {
+    height: 30px;
+    width: 240px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.info_box .submit_button {
+    width: 50px;
+    margin: 0 0 0 89px;
+    background-color:chartreuse;
+    border: 2px solid black;
+    box-shadow: 3px 3px rgb(1, 1, 22)
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+    display: block;
+}

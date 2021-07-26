@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos & Ninjas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="info_box">
+            <h1>Add a Dojo</h1>
+            <form action="/add_dojo">
+                {% csrf_token %}
+                <div class="input_line">
+                    <label name="name">Name</label>
+                    <input type="text" name="name_input">
+                </div>
+                <div class="input_line">
+                    <label name="city">City</label>
+                <input type="text" name="city_input">
+                </div>
+                <div class="input_line">
+                    <label name="state">State</label>
+                <input type="text" name="state_input">
+                </div>
+                <input type="submit" value="Add" class="submit_button">
+            </form>
+        </div>
+        <div class="info_box">
+            <h1>Add a Ninja</h1>
+            <form action="/add_ninja">
+                {% csrf_token %}
+                <div class="input_line">
+                    <label name="first_name">First Name</label>
+                    <input type="text" name="first_name_input">
+                </div>
+                <div class="input_line">
+                    <label name="last_name">City</label>
+                    <input type="last_name" name="last_name_input">
+                </div>
+                
+                <div class="input_line">
+                    <label for="dojo">Dojo</label>
+                    <select name="dojo">
+                    </form>
+                    {% for dojo in all_dojos %}
+                    <option name=dojo_input>{{dojo.name}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                
+            
+            <span class="break"></span>
+            <input type="submit" value="Add" class="submit_button">
+        </div>
+        <div class="info_box">
+            <h1>All the Dojos</h1>
+            <section>
+                {% for dojo in all_dojos %}
+                <h3>{{dojo.name}}</h3>
+                    
+                <ul>
+                    {% for ninja in all_ninjas %}
+                    <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+                    {% endfor %}
+                </ul>
+                    
+                {% endfor %}
+            </section>
+        </div>
+    </div>
+</body>
+</html>

@@ -15,7 +15,7 @@
     <div id="wrapper">
         <div class="info_box">
             <h1>Add a Dojo</h1>
-            <form action="/add_dojo">
+            <form action="/add_dojo" method="POST">
                 {% csrf_token %}
                 <div class="input_line">
                     <label name="name">Name</label>
@@ -29,12 +29,16 @@
                     <label name="state">State</label>
                 <input type="text" name="state_input">
                 </div>
+                <div class="input_line">
+                    <label name="desc">Description</label>
+                <input type="text" name="desc_input">
+                </div>
                 <input type="submit" value="Add" class="submit_button">
             </form>
         </div>
         <div class="info_box">
             <h1>Add a Ninja</h1>
-            <form action="/add_ninja">
+            <form action="/add_ninja" method="POST">
                 {% csrf_token %}
                 <div class="input_line">
                     <label name="first_name">First Name</label>
@@ -54,20 +58,22 @@
                     {% endfor %}
                     </select>
                 </div>
-                
-            
             <span class="break"></span>
             <input type="submit" value="Add" class="submit_button">
         </div>
         <div class="info_box">
             <h1>All the Dojos</h1>
             <section>
-                {% for dojo in all_dojos %}
+                <!--needs a grab of both table1 and table2 all to do this in views-->
+                <!--for table1 instance in table1-->
+                {% for dojo in all_dojos %}<!--straight forward here-->
                 <h3>{{dojo.name}}</h3>
                     
                 <ul>
-                    {% for ninja in all_ninjas %}
-                    <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+                    <!--Magic happens here this is how you grab the data from the nested for loop!-->
+                    <!--for table2instance in table1instance.table2.set.all-->
+                    {% for ninja in dojo.ninja.all %}
+                    <li>{{ninja.first_name}} {{ninja.last_name}} {{ninja.dojo}}</li>
                     {% endfor %}
                 </ul>
                     

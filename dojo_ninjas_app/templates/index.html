@@ -45,21 +45,24 @@
                     <input type="text" name="first_name_input">
                 </div>
                 <div class="input_line">
-                    <label name="last_name">City</label>
+                    <label name="last_name">Last Name</label>
                     <input type="last_name" name="last_name_input">
                 </div>
                 
                 <div class="input_line">
                     <label for="dojo">Dojo</label>
-                    <select name="dojo">
-                    </form>
-                    {% for dojo in all_dojos %}
-                    <option name=dojo_input>{{dojo.name}}</option>
+                    <!-- The selec is the place to put the name to grab in views -->
+                    <select  name="dojo_input">
+                    {% for Dojo in all_dojos %}
+                    <!-- make sure that the value is the id of the object in the for loop -->
+                    <option value={{Dojo.id}}>{{Dojo.name}}</option>
                     {% endfor %}
                     </select>
+                
                 </div>
             <span class="break"></span>
             <input type="submit" value="Add" class="submit_button">
+        </form>
         </div>
         <div class="info_box">
             <h1>All the Dojos</h1>
@@ -68,15 +71,19 @@
                 <!--for table1 instance in table1-->
                 {% for dojo in all_dojos %}<!--straight forward here-->
                 <h3>{{dojo.name}}</h3>
-                    
-                <ul>
+                <form action="delete_ninja" method="POST">
+                {% csrf_token %}
+                <ul >
+                    <!-- {{dojo.id}} leaving this for later understanding of what it took to figure this out -->
                     <!--Magic happens here this is how you grab the data from the nested for loop!-->
                     <!--for table2instance in table1instance.table2.set.all-->
                     {% for ninja in dojo.ninja.all %}
-                    <li>{{ninja.first_name}} {{ninja.last_name}} {{ninja.dojo}}</li>
+                    <li value="{{ninja.id}}" >{{ninja.first_name}} {{ninja.last_name}}<!--{{ninja.id}} no longer needed-->
+                        <button id="ninja_delete" type="submit" value="{{ninja.id}}" name="ninja_id" class="submit_button">Delete Ninja</button>
+                    </li>
                     {% endfor %}
                 </ul>
-                    
+                </form>   
                 {% endfor %}
             </section>
         </div>

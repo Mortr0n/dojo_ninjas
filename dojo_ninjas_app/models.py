@@ -5,6 +5,7 @@ class Dojos(models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=2)
     desc = models.TextField(default='old dojo')
+    #ninja OTM
     
 class Ninjas(models.Model):
     first_name = models.CharField(max_length=255)
